@@ -1,0 +1,85 @@
+<html>
+
+<head>
+    <title>Vortex</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@1,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora&family=Sarabun:ital,wght@1,800&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="favicon.png">
+</head>
+
+<body>
+    <section id="navbar">
+        <div class="container-fluid row">
+            <div class="logo col-md-4">
+                <a href="#"><img src="logo.png" alt=""></a>
+            </div>
+            <div class="col-md-8">
+                <h1 class="heading">VELOCITY RUSH</h1>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div style="height: 10rem;">
+                <p class="text-center text"><span id="text"></span><span class="input-cursor"></span></p>
+            </div>
+            <div class="button">
+                <a href="{{link}}" class="btn  btn-lg btn-primary">Link</a>
+            </div>
+        </div>
+    </section>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+    integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+    crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"
+    integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+<script>
+    async function typeSentence(sentence, eleRef, delay = 200) {
+        const letters = sentence.split("");
+        let i = 0;
+        while (i < letters.length) {
+            await waitForMs(delay);
+            $(eleRef).append(letters[i]);
+            i++
+        }
+        return;
+    }
+
+
+    function waitForMs(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms))
+    }
+    async function deleteSentence(eleRef, count) {
+        const sentence = $(eleRef).html();
+        const letters = sentence.split("");
+        let i = 0;
+        while (letters.length > 0) {
+            await waitForMs(150);
+            letters.pop();
+            $(eleRef).html(letters.join(""));
+        }
+    }
+    $(document).ready(async function () {
+        await typeSentence("rau", "#text");
+        await waitForMs(200);
+        await deleteSentence("#text");
+        await typeSentence("Round {{round}}", "#text")
+
+    });
+    setTimeout(function () {
+        window.location.reload();
+    }, 5000);
+</script>
+
+</html>
