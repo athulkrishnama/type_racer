@@ -1,10 +1,12 @@
 .heading {
     color: #33158f;
-    font-family: 'Sarabun', sans-serif;
-    font-weight: bolder;
+    font-family: typewriter;
     font-size: 100px;
 }
 
+body{
+    font-family: typewriter;
+}
 
 .typing-container {
     display: flex;
@@ -22,7 +24,7 @@
 }
 
 .text {
-    font-family: monospace;
+    font-family: typewriter;
     font-size: 5rem;
 }
 
@@ -45,6 +47,7 @@
 }
 
 .button {
+    font-family: typewriter;
     display: flex;
     justify-content: center;
 }
@@ -88,4 +91,9 @@ form{
 
 .inputdecor:focus{
     outline: none;
+}
+
+@font-face {
+    font-family: typewriter;
+    src: url(CassandreGraphika.ttf);
 }
